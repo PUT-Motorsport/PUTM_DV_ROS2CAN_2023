@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "USBCANlib"
+			"path" : "ROS2CAN"
 		}
 	],
 	"backtrace" : 1,
@@ -44,26 +44,11 @@
 			"language" : "CXX",
 			"sourceIndexes" : 
 			[
-				0,
-				2,
-				3
-			]
-		},
-		{
-			"compileCommandFragments" : 
-			[
-				{
-					"fragment" : "-g  "
-				}
-			],
-			"language" : "C",
-			"sourceIndexes" : 
-			[
-				1
+				0
 			]
 		}
 	],
-	"id" : "USBCANlib::@6890427a1f51a3e7e1df",
+	"id" : "ROS2CAN::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -79,8 +64,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "USBCANlib",
-	"nameOnDisk" : "USBCANlib",
+	"name" : "ROS2CAN",
+	"nameOnDisk" : "ROS2CAN",
 	"paths" : 
 	{
 		"build" : ".",
@@ -92,10 +77,7 @@
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				0,
-				1,
-				2,
-				3
+				0
 			]
 		}
 	],
@@ -104,25 +86,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/modded.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 1,
-			"path" : "src/rs232.c",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/uCCButil.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "src/uCCBlibC.cpp",
+			"path" : "main.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

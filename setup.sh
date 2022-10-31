@@ -25,9 +25,13 @@ else
     modprobe can
     modprobe can-raw
     modprobe slcan
-    slcand -s8 -o $CAN_TTY_PATH can0
+    
+    #link serial interface with a virtual CAN device
+    slcand -s8 -o $CAN_TTY_PATH slcan0 
     sleep 1
-    ifconfig can0 up && echo "[CANscript] can0 is up and running"
+    
+    #bring network interface up
+    ifconfig slcan0 up && echo "[CANscript] slcan0 is up and running"
     exit 0
 fi
 
