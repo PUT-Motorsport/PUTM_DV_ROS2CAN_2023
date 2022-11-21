@@ -1,0 +1,2 @@
+package_rostocan
+-DCATKIN_DEVEL_PREFIX=/home/mateusz/rostocan_workspace/devel -DCMAKE_INSTALL_PREFIX=/home/mateusz/rostocan_workspace/install -G Unix Makefiles
