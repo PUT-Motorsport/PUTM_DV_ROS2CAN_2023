@@ -1,7 +1,7 @@
 
 #include "ros/ros.h"
-
 #include "package_rostocan/apps.h"
+#include "CanBridge.h"
 
 
 int main(int argc, char **argv)
@@ -15,11 +15,18 @@ int main(int argc, char **argv)
 
   ros::Rate loop_rate(10);
 
+  int nbytes;
+  CanBridge slcan;
+  
+
   while (ros::ok())
   {
     package_rostocan::apps msg;
-
-    msg.pedal_position = 25;
+    
+    slcan.init("slcan0");
+    struct can_frame frame;
+    nbytes = read(slcan.s, &frame, sizeof(struct can_frame));    
+    msg.pedal_position = frame.data[0];
 
     ROS_INFO("%d", msg.pedal_position);
 

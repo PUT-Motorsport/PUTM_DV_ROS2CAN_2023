@@ -25,7 +25,7 @@ add_executable(ros_to_can src/ros_to_can.cpp)
 target_link_libraries(ros_to_can ${catkin_LIBRARIES})
 add_dependencies(ros_to_can package_rostocan_generate_messages_cpp)
 
-add_executable(can_to_ros src/can_to_ros.cpp)
+add_executable(can_to_ros src/can_to_ros.cpp src/CanBridge.cpp)
 target_link_libraries(can_to_ros ${catkin_LIBRARIES})
 add_dependencies(can_to_ros package_rostocan_generate_messages_cpp)
 
