@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 
   ros::Publisher apps_pub = n.advertise<package_rostocan::apps>("apps", 1000);
 
-  ros::Rate loop_rate();
+  //ros::Rate loop_rate();
 
   int nbytes;
   CanBridge slcan;
