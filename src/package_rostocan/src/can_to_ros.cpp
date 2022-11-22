@@ -13,19 +13,19 @@ int main(int argc, char **argv)
 
   ros::Publisher apps_pub = n.advertise<package_rostocan::apps>("apps", 1000);
 
-  ros::Rate loop_rate(10);
+  ros::Rate loop_rate();
 
   int nbytes;
   CanBridge slcan;
-  
+  slcan.init("slcan0");
+  package_rostocan::apps msg;
 
   while (ros::ok())
-  {
-    package_rostocan::apps msg;
-    
-    slcan.init("slcan0");
+  { 
     struct can_frame frame;
-    nbytes = read(slcan.s, &frame, sizeof(struct can_frame));    
+
+    nbytes = read(slcan.s, &frame, sizeof(struct can_frame));
+
     msg.pedal_position = frame.data[0];
 
     ROS_INFO("%d", msg.pedal_position);
@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 
     ros::spinOnce();
 
-    loop_rate.sleep();
+    //loop_rate.sleep();
   }
 
 
