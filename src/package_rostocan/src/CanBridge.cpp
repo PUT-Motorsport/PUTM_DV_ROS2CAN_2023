@@ -29,7 +29,6 @@ int CanBridge::canInit(const char* ifname = "slcan0")
 
 int CanBridge::canWrite()
 {
-
     return 0;
 }
 
@@ -40,15 +39,19 @@ int CanBridge::canRead()
     
 	nbytes = read(this->s, &frame, sizeof(struct can_frame));
 
-	//this is the time to create a new msg mased on the received id
-	//switch??
-	//case 0x:
-	package_rostocan::apps msg;
-	msg.pedal_position = frame.data[0];
-    
-	ROS_INFO("%d", msg.pedal_position);
-    
-	apps_pub.publish(msg);
 	
+	//this is the time to create a new msg mased on the received id
+	switch(frame.can_id)
+	{
+		case 0x69:
+			package_rostocan::apps msg;
+			msg.pedal_position = frame.data[0];
+			ROS_INFO("%d", msg.pedal_position);
+			apps_pub.publish(msg);
+			break;
+	}
+
+
+
 	return 0;
 }
