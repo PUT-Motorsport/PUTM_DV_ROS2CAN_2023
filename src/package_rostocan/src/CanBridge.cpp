@@ -2,13 +2,13 @@
 
 #include "CanBridge.h"
 
-
-CanBridge::CanBridge()
+CanBridge::CanBridge(): 
+apps_pub{n.advertise<package_rostocan::apps>("apps", 1)}
 {
 
 }
 
-int CanBridge::init(const char* ifname)
+int CanBridge::canInit(const char* ifname = "slcan0")
 {
     struct ifreq ifr;
     struct sockaddr_can addr;
@@ -22,18 +22,33 @@ int CanBridge::init(const char* ifname)
 	addr.can_ifindex = ifr.ifr_ifindex;
 	if (bind(s, (struct sockaddr *)&addr, sizeof(addr)) == -1)
     {
-		return -2;
+		return -1;
 	}
-    return 0;
+	return 0;
 }
 
-int CanBridge::write()
+int CanBridge::canWrite()
 {
 
     return 0;
 }
 
-int CanBridge::read()
+int CanBridge::canRead()
 {
-    return 0;
+	int nbytes;
+	struct can_frame frame;
+    
+	nbytes = read(this->s, &frame, sizeof(struct can_frame));
+
+	//this is the time to create a new msg mased on the received id
+	//switch??
+	//case 0x:
+	package_rostocan::apps msg;
+	msg.pedal_position = frame.data[0];
+    
+	ROS_INFO("%d", msg.pedal_position);
+    
+	apps_pub.publish(msg);
+	
+	return 0;
 }

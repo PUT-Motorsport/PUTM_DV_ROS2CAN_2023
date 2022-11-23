@@ -13,8 +13,7 @@ class apps(genpy.Message):
   _has_header = False  # flag to mark the presence of a Header object
   _full_text = """uint16 pedal_position
 uint8 counter
-int8 position_diff
-"""
+int8 position_diff"""
   __slots__ = ['pedal_position','counter','position_diff']
   _slot_types = ['uint16','uint8','int8']
 

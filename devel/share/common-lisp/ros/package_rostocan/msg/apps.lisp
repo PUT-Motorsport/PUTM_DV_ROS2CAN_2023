@@ -79,10 +79,10 @@
   "7d6478f1da74e05ce29749e8a7519384")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<apps>)))
   "Returns full string definition for message of type '<apps>"
-  (cl:format cl:nil "uint16 pedal_position~%uint8 counter~%int8 position_diff~%~%~%"))
+  (cl:format cl:nil "uint16 pedal_position~%uint8 counter~%int8 position_diff~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'apps)))
   "Returns full string definition for message of type 'apps"
-  (cl:format cl:nil "uint16 pedal_position~%uint8 counter~%int8 position_diff~%~%~%"))
+  (cl:format cl:nil "uint16 pedal_position~%uint8 counter~%int8 position_diff~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <apps>))
   (cl:+ 0
      2

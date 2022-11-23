@@ -3,17 +3,25 @@
 #include <sys/socket.h>
 #include <sys/ioctl.h>
 #include <linux/can.h>
+#include <unistd.h>
+#include "ros/ros.h"
+#include "package_rostocan/apps.h"
+
+
 
 class CanBridge
 {
     public:
     CanBridge();
     //~CanBridge();
-    int init(const char* ifname = "slcan0");
-    int write();
-    int read();
+    int canInit(const char* ifname);
+    int canWrite();
+    int canRead();
 
     //private:
     int s;
+    ros::NodeHandle n;
+
+    ros::Publisher apps_pub;
 
 };
