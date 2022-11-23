@@ -43,7 +43,7 @@ int CanBridge::canRead()
 	//this is the time to create a new msg mased on the received id
 	switch(frame.can_id)
 	{
-		case 0x69:
+		case TTS_MAIN_CAN_ID:
 			package_rostocan::apps msg;
 			msg.pedal_position = frame.data[0];
 			ROS_INFO("%d", msg.pedal_position);

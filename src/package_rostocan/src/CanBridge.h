@@ -23,5 +23,10 @@ class CanBridge
     ros::NodeHandle n;
 
     ros::Publisher apps_pub;
+};
 
+enum CAN_ID : uint16_t 
+{
+    APPS_MAIN_CAN_ID = 0x5,
+    TTS_MAIN_CAN_ID = 0X69
 };
