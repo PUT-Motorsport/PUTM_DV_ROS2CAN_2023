@@ -1,5 +1,5 @@
 # %Tag(FULLTEXT)%
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.12)
 project(package_rostocan)
 
 ## Find catkin and any catkin packages
@@ -9,8 +9,16 @@ find_package(catkin REQUIRED COMPONENTS
    std_msgs
    message_generation
 )
+
+## Find all message files in the msg directory
+file(GLOB msg_files CONFIGURE_DEPENDS "msg/*.msg")
+foreach(msg_file ${msg_files})
+   get_filename_component(msg_file_nameonly ${msg_file} NAME)
+   list(APPEND msg_files_namesonly ${msg_file_nameonly})
+endforeach()
+
 ## Declare ROS messages and services
-add_message_files(FILES apps.msg)
+add_message_files(FILES ${msg_files_namesonly})
 
 ## Generate added messages and services
 generate_messages(DEPENDENCIES std_msgs)

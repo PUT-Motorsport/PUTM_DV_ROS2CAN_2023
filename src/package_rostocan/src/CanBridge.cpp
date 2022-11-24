@@ -43,12 +43,30 @@ int CanBridge::canRead()
 	//this is the time to create a new msg mased on the received id
 	switch(frame.can_id)
 	{
-		case TTS_MAIN_CAN_ID:
-			package_rostocan::apps msg;
-			msg.pedal_position = frame.data[0];
-			ROS_INFO("%d", msg.pedal_position);
-			apps_pub.publish(msg);
+		case PUTM_CAN::APPS_MAIN_CAN_ID:
+			if(PUTM_CAN::APPS_MAIN_CAN_DLC == sizeof(frame.data)) 
+			{	
+				package_rostocan::apps ros_msg;
+				auto can_msg = reinterpret_cast<PUTM_CAN::Apps_main*>(frame.data);
+				ros_msg.counter = can_msg->counter;
+				ROS_INFO("%d", ros_msg.counter);
+				apps_pub.publish(ros_msg);
+			}
 			break;
+
+		case 0x69:
+			if(8 == sizeof(frame.data)) 
+			{	
+				package_rostocan::apps ros_msg;
+				auto can_msg = reinterpret_cast<PUTM_CAN::Apps_main*>(frame.data);
+				ros_msg.counter = can_msg->counter;
+				ROS_INFO("%d", ros_msg.counter);
+				apps_pub.publish(ros_msg);
+			}
+			break;
+
+
+
 	}
 
 

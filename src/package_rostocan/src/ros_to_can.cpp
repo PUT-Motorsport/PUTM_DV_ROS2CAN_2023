@@ -5,7 +5,7 @@
 
 void appsCallback(const package_rostocan::apps::ConstPtr& msg)
 {
-  ROS_INFO("I heard: [%d]", msg->pedal_position);
+  ROS_INFO("I heard: [%d]", msg->counter);
 }
 
 int main(int argc, char **argv)

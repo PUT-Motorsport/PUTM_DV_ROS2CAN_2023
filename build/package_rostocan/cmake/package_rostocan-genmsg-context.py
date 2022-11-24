@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
-messages_str = "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/apps.msg"
+messages_str = "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/apps.msg;/home/mateusz/rostocan_workspace/src/package_rostocan/msg/wheeltemp.msg"
 services_str = ""
 pkg_name = "package_rostocan"
 dependencies_str = "std_msgs"

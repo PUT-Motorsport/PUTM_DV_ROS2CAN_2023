@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "package_rostocan: 1 messages, 0 services")
+message(STATUS "package_rostocan: 2 messages, 0 services")
 
 set(MSG_I_FLAGS "-Ipackage_rostocan:/home/mateusz/rostocan_workspace/src/package_rostocan/msg;-Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg")
 
@@ -22,6 +22,11 @@ add_custom_target(_package_rostocan_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "package_rostocan" "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/apps.msg" ""
 )
 
+get_filename_component(_filename "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/wheeltemp.msg" NAME_WE)
+add_custom_target(_package_rostocan_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "package_rostocan" "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/wheeltemp.msg" ""
+)
+
 #
 #  langs = gencpp;geneus;genlisp;gennodejs;genpy
 #
@@ -30,6 +35,12 @@ add_custom_target(_package_rostocan_generate_messages_check_deps_${_filename}
 ### Generating Messages
 _generate_msg_cpp(package_rostocan
   "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/apps.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/package_rostocan
+)
+_generate_msg_cpp(package_rostocan
+  "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/wheeltemp.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/package_rostocan
@@ -51,6 +62,8 @@ add_dependencies(package_rostocan_generate_messages package_rostocan_generate_me
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/apps.msg" NAME_WE)
 add_dependencies(package_rostocan_generate_messages_cpp _package_rostocan_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/wheeltemp.msg" NAME_WE)
+add_dependencies(package_rostocan_generate_messages_cpp _package_rostocan_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(package_rostocan_gencpp)
@@ -63,6 +76,12 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS package_rostocan_generate_messages_
 ### Generating Messages
 _generate_msg_eus(package_rostocan
   "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/apps.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/package_rostocan
+)
+_generate_msg_eus(package_rostocan
+  "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/wheeltemp.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/package_rostocan
@@ -84,6 +103,8 @@ add_dependencies(package_rostocan_generate_messages package_rostocan_generate_me
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/apps.msg" NAME_WE)
 add_dependencies(package_rostocan_generate_messages_eus _package_rostocan_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/wheeltemp.msg" NAME_WE)
+add_dependencies(package_rostocan_generate_messages_eus _package_rostocan_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(package_rostocan_geneus)
@@ -96,6 +117,12 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS package_rostocan_generate_messages_
 ### Generating Messages
 _generate_msg_lisp(package_rostocan
   "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/apps.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/package_rostocan
+)
+_generate_msg_lisp(package_rostocan
+  "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/wheeltemp.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/package_rostocan
@@ -117,6 +144,8 @@ add_dependencies(package_rostocan_generate_messages package_rostocan_generate_me
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/apps.msg" NAME_WE)
 add_dependencies(package_rostocan_generate_messages_lisp _package_rostocan_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/wheeltemp.msg" NAME_WE)
+add_dependencies(package_rostocan_generate_messages_lisp _package_rostocan_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(package_rostocan_genlisp)
@@ -129,6 +158,12 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS package_rostocan_generate_messages_
 ### Generating Messages
 _generate_msg_nodejs(package_rostocan
   "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/apps.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/package_rostocan
+)
+_generate_msg_nodejs(package_rostocan
+  "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/wheeltemp.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/package_rostocan
@@ -150,6 +185,8 @@ add_dependencies(package_rostocan_generate_messages package_rostocan_generate_me
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/apps.msg" NAME_WE)
 add_dependencies(package_rostocan_generate_messages_nodejs _package_rostocan_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/wheeltemp.msg" NAME_WE)
+add_dependencies(package_rostocan_generate_messages_nodejs _package_rostocan_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(package_rostocan_gennodejs)
@@ -162,6 +199,12 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS package_rostocan_generate_messages_
 ### Generating Messages
 _generate_msg_py(package_rostocan
   "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/apps.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/package_rostocan
+)
+_generate_msg_py(package_rostocan
+  "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/wheeltemp.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/package_rostocan
@@ -182,6 +225,8 @@ add_dependencies(package_rostocan_generate_messages package_rostocan_generate_me
 
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/apps.msg" NAME_WE)
+add_dependencies(package_rostocan_generate_messages_py _package_rostocan_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/mateusz/rostocan_workspace/src/package_rostocan/msg/wheeltemp.msg" NAME_WE)
 add_dependencies(package_rostocan_generate_messages_py _package_rostocan_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

@@ -4,9 +4,12 @@
 #include <sys/ioctl.h>
 #include <linux/can.h>
 #include <unistd.h>
+
 #include "ros/ros.h"
 #include "package_rostocan/apps.h"
 
+#include "CanHeaders/PM08-CANBUS-APPS.hpp"
+#include "CanHeaders/PM08-CANBUS-WHEELTEMP.hpp"
 
 
 class CanBridge
@@ -23,10 +26,4 @@ class CanBridge
     ros::NodeHandle n;
 
     ros::Publisher apps_pub;
-};
-
-enum CAN_ID : uint16_t 
-{
-    APPS_MAIN_CAN_ID = 0x5,
-    TTS_MAIN_CAN_ID = 0X69
 };
