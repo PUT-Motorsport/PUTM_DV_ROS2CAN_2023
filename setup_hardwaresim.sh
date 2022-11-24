@@ -10,9 +10,12 @@ ip link set up slcan0
 
 # CANbus frames generation
 
-devices_ids=(5 7 A F 14 19 1E 23 24 25 26 27 28 2D 32 37 3C 3D 41 46 4B 50 55 5A 5F 60 64 69 6E 73 78 7D 82 87 8C 91 96 9B)
+devices_ids=(005 007 00A 00F 014 019 01E 023 024 025 026 027 028 02D 032 037 03C 03D 041 046 04B 050 055 05A 05F 060 064 069 06E 073 078 07D 082 087 08C 091 096 09B)
 
-foreach d_id devices_ids
-    echo ${d_id}
-    #cansend slcan0 $d_id#00FFAA5501020304  
-end
+while true
+do
+    for d_id in "${devices_ids[@]}"
+    do
+        cansend slcan0 "${d_id}#00FFAA5501020304"
+    done
+done
