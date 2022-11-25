@@ -1,11 +1,12 @@
 #include "ros/ros.h"
 
-#include "package_rostocan/apps.h"
+#include "package_rostocan/Apps_main.h"
+#include "package_rostocan/WheelTemp_main.h"
 
 
-void appsCallback(const package_rostocan::apps::ConstPtr& msg)
+void appsCallback(const package_rostocan::WheelTemp_main::ConstPtr& msg)
 {
-  ROS_INFO("I heard: [%d]", msg->counter);
+  ROS_INFO("I heard: [%d]", msg->wheelTemp0);
 }
 
 int main(int argc, char **argv)
@@ -14,7 +15,7 @@ int main(int argc, char **argv)
 
   ros::NodeHandle n;
 
-  ros::Subscriber sub = n.subscribe("apps", 1000, appsCallback);
+  ros::Subscriber subscriber_device = n.subscribe("WheelTemp_main", 1, appsCallback);
 
   ros::spin();
 
