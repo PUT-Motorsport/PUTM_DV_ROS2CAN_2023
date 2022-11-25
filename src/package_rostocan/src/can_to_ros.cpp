@@ -1,6 +1,5 @@
 
 #include "ros/ros.h"
-#include "package_rostocan/apps.h"
 #include "CanBridge.h"
 
 
