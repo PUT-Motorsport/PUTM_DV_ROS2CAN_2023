@@ -6,7 +6,9 @@
 #include <unistd.h>
 
 #include "ros/ros.h"
-#include "package_rostocan/apps.h"
+
+#include "package_rostocan/Apps_main.h"
+#include "package_rostocan/WheelTemp_main.h"
 
 #include "CanHeaders/PM08-CANBUS-APPS.hpp"
 #include "CanHeaders/PM08-CANBUS-WHEELTEMP.hpp"
@@ -25,5 +27,6 @@ class CanBridge
     int s;
     ros::NodeHandle n;
 
-    ros::Publisher apps_pub;
+    ros::Publisher publisher_Apps_main;
+    ros::Publisher publisher_WheelTemp_main;
 };

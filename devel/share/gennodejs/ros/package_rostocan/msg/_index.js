@@ -1,10 +1,10 @@
 
 "use strict";
 
-let apps = require('./apps.js');
-let wheeltemp = require('./wheeltemp.js');
+let Apps_main = require('./Apps_main.js');
+let WheelTemp_main = require('./WheelTemp_main.js');
 
 module.exports = {
-  apps: apps,
-  wheeltemp: wheeltemp,
+  Apps_main: Apps_main,
+  WheelTemp_main: WheelTemp_main,
 };

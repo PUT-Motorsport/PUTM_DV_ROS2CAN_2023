@@ -2,8 +2,11 @@
 
 #include "CanBridge.h"
 
+int counter = 0;
+
 CanBridge::CanBridge(): 
-apps_pub{n.advertise<package_rostocan::apps>("apps", 1)}
+publisher_Apps_main{n.advertise<package_rostocan::Apps_main>("Apps_main", 1)},
+publisher_WheelTemp_main{n.advertise<package_rostocan::WheelTemp_main>("WheelTemp_main", 1)}
 {
 
 }
@@ -34,34 +37,48 @@ int CanBridge::canWrite()
 
 int CanBridge::canRead()
 {
-	int nbytes;
+	int error;
+	int data_size = 0;
 	struct can_frame frame;
     
-	nbytes = read(this->s, &frame, sizeof(struct can_frame));
+	error = read(this->s, &frame, sizeof(struct can_frame));
+
+	for(; data_size<8; data_size++)
+	{
+		if(frame.data[data_size]==0) break;
+	}
 
 	
-	//this is the time to create a new msg mased on the received id
+	// This is the time to create a new msg based on the received id
+	
+
 	switch(frame.can_id)
 	{
 		case PUTM_CAN::APPS_MAIN_CAN_ID:
-			if(PUTM_CAN::APPS_MAIN_CAN_DLC == sizeof(frame.data)) 
+			if(PUTM_CAN::APPS_MAIN_CAN_DLC == data_size) 
 			{	
-				package_rostocan::apps ros_msg;
+				package_rostocan::Apps_main ros_msg;
 				auto can_msg = reinterpret_cast<PUTM_CAN::Apps_main*>(frame.data);
+				
 				ros_msg.counter = can_msg->counter;
-				ROS_INFO("%d", ros_msg.counter);
-				apps_pub.publish(ros_msg);
+				ros_msg.pedal_position = can_msg->pedal_position;
+				ros_msg.position_diff = can_msg->position_diff;
+				ros_msg.device_state = static_cast<uint8_t>(can_msg->device_state);
+
+				//ROS_INFO("id: %d", PUTM_CAN::APPS_MAIN_CAN_ID);
+				ROS_INFO("Apps_main %d", ++counter);//ros_msg.counter);
+				publisher_Apps_main.publish(ros_msg);
 			}
 			break;
 
-		case 0x69:
-			if(8 == sizeof(frame.data)) 
+		case PUTM_CAN::WHEELTEMP_MAIN_CAN_ID:
+			if(PUTM_CAN::WHEELTEMP_MAIN_CAN_DLC == data_size) 
 			{	
-				package_rostocan::apps ros_msg;
-				auto can_msg = reinterpret_cast<PUTM_CAN::Apps_main*>(frame.data);
-				ros_msg.counter = can_msg->counter;
-				ROS_INFO("%d", ros_msg.counter);
-				apps_pub.publish(ros_msg);
+				package_rostocan::WheelTemp_main ros_msg;
+				auto can_msg = reinterpret_cast<PUTM_CAN::WheelTemp_main*>(frame.data);
+				ros_msg.temp0 = can_msg->wheelTemp[0];
+				ROS_INFO("WheelTemp %d", ros_msg.temp0);
+				publisher_WheelTemp_main.publish(ros_msg);
 			}
 			break;
 
