@@ -1,34 +1,14 @@
-#include <string.h>
+#include "CanReceiver.h"
 
-#include "CanBridge.h"
 
-CanBridge::CanBridge(): 
+CanReceiver::CanReceiver():
 publisher_Apps_main{n.advertise<package_rostocan::Apps_main>("Apps_main", 1)},
 publisher_WheelTemp_main{n.advertise<package_rostocan::WheelTemp_main>("WheelTemp_main", 1)}
 {
 
 }
 
-int CanBridge::canInit(const char* ifname = "slcan0")
-{
-    struct ifreq ifr;
-    struct sockaddr_can addr;
-    if ((s = socket(PF_CAN, SOCK_RAW, CAN_RAW)) == -1)
-    { 
-		return -1;
-	}
-	strcpy(ifr.ifr_name, ifname);
-	ioctl(s, SIOCGIFINDEX, &ifr);
-	addr.can_family  = AF_CAN;
-	addr.can_ifindex = ifr.ifr_ifindex;
-	if (bind(s, (struct sockaddr *)&addr, sizeof(addr)) == -1)
-    {
-		return -1;
-	}
-	return 0;
-}
-
-int CanBridge::canRead()
+int CanReceiver::canReceive()
 {
 	int data_size = 0;
 	struct can_frame frame;

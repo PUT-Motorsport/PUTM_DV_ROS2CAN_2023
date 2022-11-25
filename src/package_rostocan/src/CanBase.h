@@ -14,19 +14,11 @@
 #include "CanHeaders/PM08-CANBUS-WHEELTEMP.hpp"
 
 
-class CanBridge
+class CanBase
 {
-    
-    private:
+    protected:
         int s;
         ros::NodeHandle n;
-        ros::Publisher publisher_Apps_main;
-        ros::Publisher publisher_WheelTemp_main;
-    
     public:
-        CanBridge();
         int canInit(const char* ifname);
-        int canWrite();
-        int canRead();
-
 };
