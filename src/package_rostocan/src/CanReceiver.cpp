@@ -4,6 +4,7 @@
 CanReceiver::CanReceiver():
 publisher_Apps_main{n.advertise<package_rostocan::Apps_main>("received/Apps_main", 1)},
 publisher_WheelTemp_main{n.advertise<package_rostocan::WheelTemp_main>("received/WheelTemp_main", 1)}
+// ...
 {
 
 }
@@ -78,11 +79,6 @@ int CanReceiver::canReceive()
 				publisher_WheelTemp_main.publish(ros_msg);
 			}
 			break;
-
-
 	}
-
-
-
 	return 0;
 }
