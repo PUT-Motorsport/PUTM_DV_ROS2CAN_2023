@@ -12,6 +12,18 @@ subscriber_WheelTemp_main{n.subscribe("transmitted/WheelTemp_main", 1, &CanTrans
 
 void CanTransmitter::callback_Apps_main(const package_rostocan::Apps_main::ConstPtr& ros_msg)
 {
+  // struct can_frame frame;
+  // int nbytes;
+
+	// frame.can_id  = PUTM_CAN::APPS_MAIN_CAN_ID;
+	// frame.can_dlc = PUTM_CAN::APPS_MAIN_CAN_DLC;
+  
+  // // ?????????????????
+
+	// write(s, &frame, sizeof(struct can_frame));
+  
+  // printf("Wrote %d bytes\n", nbytes);
+  
   ROS_INFO("I heard: [%d]", ros_msg->counter);
 }
 
