@@ -2,8 +2,8 @@
 
 
 CanReceiver::CanReceiver():
-publisher_Apps_main{n.advertise<package_rostocan::Apps_main>("Apps_main", 1)},
-publisher_WheelTemp_main{n.advertise<package_rostocan::WheelTemp_main>("WheelTemp_main", 1)}
+publisher_Apps_main{n.advertise<package_rostocan::Apps_main>("received/Apps_main", 1)},
+publisher_WheelTemp_main{n.advertise<package_rostocan::WheelTemp_main>("received/WheelTemp_main", 1)}
 {
 
 }

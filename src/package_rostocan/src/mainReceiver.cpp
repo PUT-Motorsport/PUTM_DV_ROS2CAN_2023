@@ -6,7 +6,7 @@
 int main(int argc, char **argv)
 {
   
-  ros::init(argc, argv, "CAN");
+  ros::init(argc, argv, "CanReceiver");
   CanReceiver slcanRx;
   slcanRx.canInit("slcan0");
 

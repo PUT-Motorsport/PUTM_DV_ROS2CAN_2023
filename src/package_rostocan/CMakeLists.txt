@@ -37,4 +37,9 @@ add_executable(mainReceiver src/mainReceiver.cpp src/CanReceiver.cpp src/CanBase
 target_link_libraries(mainReceiver ${catkin_LIBRARIES})
 add_dependencies(mainReceiver package_rostocan_generate_messages_cpp)
 
+add_executable(mainTransmitter src/mainTransmitter.cpp src/CanTransmitter.cpp src/CanBase.cpp)
+target_link_libraries(mainTransmitter ${catkin_LIBRARIES})
+add_dependencies(mainTransmitter package_rostocan_generate_messages_cpp)
+
+
 # %EndTag(FULLTEXT)%
