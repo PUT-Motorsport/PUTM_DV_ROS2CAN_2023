@@ -2,7 +2,7 @@
 
 #include "CanBase.h"
 
-int CanBase::canInit(const char* ifname = "slcan0")
+int CanBase::canConnect(const char* ifname = "slcan0")
 {
     struct ifreq ifr;
     struct sockaddr_can addr;

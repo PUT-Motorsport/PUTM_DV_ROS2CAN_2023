@@ -20,5 +20,5 @@ class CanBase
         int s;
         ros::NodeHandle n;
     public:
-        int canInit(const char* ifname);
+        int canConnect(const char* ifname);
 };

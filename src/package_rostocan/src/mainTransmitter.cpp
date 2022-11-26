@@ -6,7 +6,7 @@ int main(int argc, char **argv)
 {
   ros::init(argc, argv, "CanTransmitter");
   CanTransmitter slcanTx;
-  slcanTx.canInit("slcan0");
+  slcanTx.canConnect("slcan0");
   ros::spin();
   return 0;
 }

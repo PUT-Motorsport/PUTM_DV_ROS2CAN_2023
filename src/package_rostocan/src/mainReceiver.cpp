@@ -8,7 +8,7 @@ int main(int argc, char **argv)
   
   ros::init(argc, argv, "CanReceiver");
   CanReceiver slcanRx;
-  slcanRx.canInit("slcan0");
+  slcanRx.canConnect("slcan0");
 
   while (ros::ok())
   {
