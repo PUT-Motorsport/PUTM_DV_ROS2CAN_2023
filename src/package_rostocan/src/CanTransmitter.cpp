@@ -21,11 +21,10 @@ void CanTransmitter::callback_Apps_main(const package_rostocan::Apps_main::Const
 
 
 	auto can_data = reinterpret_cast<uint8_t*>(&can_msg);
-  
+
 
   frame.can_id  = PUTM_CAN::APPS_MAIN_CAN_ID;
 	frame.can_dlc = PUTM_CAN::APPS_MAIN_CAN_DLC;
-
 
   std::copy(&can_data[0], &can_data[PUTM_CAN::APPS_MAIN_CAN_DLC], frame.data);
 
