@@ -7,34 +7,32 @@ subscriber_WheelTemp_main{n.subscribe("transmitted/WheelTemp_main", 1, &CanTrans
 //subscribers & callbacks:
 // ...
 {
-
 }
 
 void CanTransmitter::callback_Apps_main(const package_rostocan::Apps_main::ConstPtr& ros_msg)
 {
+  PUTM_CAN::Apps_main can_msg;
   struct can_frame frame;
 
-  /* TODO
-    @ ros_msg to can_msg
-    @ can_msg to can_data array
-    @ can_data to frame.data[]
-    @ frame send
-    @ any safety checks???????
+  can_msg.counter = ros_msg->counter;
+  can_msg.pedal_position = ros_msg->pedal_position;
+  can_msg.position_diff = ros_msg->position_diff;
+  can_msg.device_state = static_cast<PUTM_CAN::Apps_states>(ros_msg->device_state);
 
-  
-  */
 
-	// frame.can_id  = PUTM_CAN::APPS_MAIN_CAN_ID;
-	// frame.can_dlc = PUTM_CAN::APPS_MAIN_CAN_DLC;
+	auto can_data = reinterpret_cast<uint8_t*>(&can_msg);
   
 
-	// write(s, &frame, sizeof(struct can_frame));
-  
-  
-  ROS_INFO("I heard: [%d]", ros_msg->counter);
+  frame.can_id  = PUTM_CAN::APPS_MAIN_CAN_ID;
+	frame.can_dlc = PUTM_CAN::APPS_MAIN_CAN_DLC;
+
+
+  std::copy(&can_data[0], &can_data[PUTM_CAN::APPS_MAIN_CAN_DLC], frame.data);
+
+	write(s, &frame, sizeof(struct can_frame));
 }
 
 void CanTransmitter::callback_WheelTemp_main(const package_rostocan::WheelTemp_main::ConstPtr& ros_msg)
 {
-  ROS_INFO("I heard: [%d]", ros_msg->wheelTemp0);
+  //ROS_INFO("I heard: [%d]", ros_msg->wheelTemp0);
 }
