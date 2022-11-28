@@ -4,7 +4,7 @@
 CanTransmitter::CanTransmitter():
 subscriber_Apps_main{n.subscribe("transmitted/Apps_main", 1, &CanTransmitter::transmit_Apps_main, this)},
 subscriber_WheelTemp_main{n.subscribe("transmitted/WheelTemp_main", 1, &CanTransmitter::transmit_WheelTemp_main, this)}
-// subscribers
+// subscriber_
 { }
 
 void CanTransmitter::transmit_Apps_main(const package_rostocan::Apps_main::ConstPtr& ros_msg)
@@ -50,3 +50,5 @@ void CanTransmitter::transmit_WheelTemp_main(const package_rostocan::WheelTemp_m
 
 	write(s, &frame, sizeof(struct can_frame));
 }
+
+// transmit_

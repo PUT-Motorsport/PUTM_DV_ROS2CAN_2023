@@ -4,7 +4,7 @@
 CanReceiver::CanReceiver() : 
 publisher_Apps_main{n.advertise<package_rostocan::Apps_main>("received/Apps_main", 1)},
 publisher_WheelTemp_main{n.advertise<package_rostocan::WheelTemp_main>("received/WheelTemp_main", 1)}
-// publishers
+// publisher_
 { }
 
 int CanReceiver::canReceive()
@@ -23,6 +23,11 @@ int CanReceiver::canReceive()
 	case PUTM_CAN::WHEELTEMP_MAIN_CAN_ID:
 		receive_WheelTemp_main(frame);
 		break;
+	/*
+	case PUTM_CAN::DEVICE_CAN_ID:
+		receive_Device_main(frame);
+		break;
+	*/
 	}
 	return 0;
 }
@@ -64,3 +69,5 @@ void CanReceiver::receive_WheelTemp_main(can_frame &frame)
 		publisher_WheelTemp_main.publish(ros_msg);
 	}
 }
+
+// receive_
