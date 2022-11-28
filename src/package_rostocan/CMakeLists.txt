@@ -29,10 +29,6 @@ catkin_package(CATKIN_DEPENDS message_runtime)
 ## Build talker and listener
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-add_executable(ros_to_can src/ros_to_can.cpp)
-target_link_libraries(ros_to_can ${catkin_LIBRARIES})
-add_dependencies(ros_to_can package_rostocan_generate_messages_cpp)
-
 add_executable(mainReceiver src/mainReceiver.cpp src/CanReceiver.cpp src/CanBase.cpp)
 target_link_libraries(mainReceiver ${catkin_LIBRARIES})
 add_dependencies(mainReceiver package_rostocan_generate_messages_cpp)

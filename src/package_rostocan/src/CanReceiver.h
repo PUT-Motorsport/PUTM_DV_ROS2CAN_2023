@@ -9,4 +9,7 @@ class CanReceiver : public CanBase
     private:
         ros::Publisher publisher_Apps_main;
         ros::Publisher publisher_WheelTemp_main;
+
+        void receive_Apps_main(can_frame& frame);
+        void receive_WheelTemp_main(can_frame& frame);
 };

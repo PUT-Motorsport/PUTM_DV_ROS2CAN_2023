@@ -7,10 +7,10 @@ class CanTransmitter : public CanBase
 
     private:
         ros::Subscriber subscriber_Apps_main;
-        void callback_Apps_main(const package_rostocan::Apps_main::ConstPtr& ros_msg);
-
         ros::Subscriber subscriber_WheelTemp_main;
-        void callback_WheelTemp_main(const package_rostocan::WheelTemp_main::ConstPtr& ros_msg);
+
+        void transmit_Apps_main(const package_rostocan::Apps_main::ConstPtr& ros_msg);
+        void transmit_WheelTemp_main(const package_rostocan::WheelTemp_main::ConstPtr& ros_msg);
         
         //subscribers & callbacks:
         // ...
