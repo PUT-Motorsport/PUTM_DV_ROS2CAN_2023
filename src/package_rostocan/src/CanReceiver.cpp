@@ -9,6 +9,7 @@ publisher_WheelTemp_main{n.advertise<package_rostocan::WheelTemp_main>("received
 
 int CanReceiver::canReceive()
 {
+	int status = 1;
 	int data_size = 0;
 	can_frame frame;
 	read(this->s, &frame, sizeof(struct can_frame)); // Check for errors
@@ -17,22 +18,22 @@ int CanReceiver::canReceive()
 	switch (frame.can_id)
 	{
 	case PUTM_CAN::APPS_MAIN_CAN_ID:
-		receive_Apps_main(frame);
+		status = receive_Apps_main(frame);
 		break;
 
 	case PUTM_CAN::WHEELTEMP_MAIN_CAN_ID:
-		receive_WheelTemp_main(frame);
+		status = receive_WheelTemp_main(frame);
 		break;
 	/*
 	case PUTM_CAN::DEVICE_CAN_ID:
-		receive_Device_main(frame);
+		status = receive_Device_main(frame);
 		break;
 	*/
 	}
-	return 0;
+	return status;
 }
 
-void CanReceiver::receive_Apps_main(can_frame &frame)
+int CanReceiver::receive_Apps_main(can_frame &frame)
 {
 	if (frame.can_dlc == PUTM_CAN::APPS_MAIN_CAN_DLC)
 	{
@@ -47,9 +48,10 @@ void CanReceiver::receive_Apps_main(can_frame &frame)
 
 		publisher_Apps_main.publish(ros_msg);
 	}
+	return 0;
 }
 
-void CanReceiver::receive_WheelTemp_main(can_frame &frame)
+int CanReceiver::receive_WheelTemp_main(can_frame &frame)
 {
 	if (frame.can_dlc == PUTM_CAN::WHEELTEMP_MAIN_CAN_DLC)
 	{
@@ -68,6 +70,7 @@ void CanReceiver::receive_WheelTemp_main(can_frame &frame)
 
 		publisher_WheelTemp_main.publish(ros_msg);
 	}
+	return 0;
 }
 
 // receive_
