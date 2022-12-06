@@ -17,18 +17,9 @@ int CanReceiver::canReceive()
 
 	switch (frame.can_id)
 	{
-	case PUTM_CAN::APPS_MAIN_CAN_ID:
-		status = receive_Apps_main(frame);
-		break;
-
-	case PUTM_CAN::WHEELTEMP_MAIN_CAN_ID:
-		status = receive_WheelTemp_main(frame);
-		break;
-	/*
-	case PUTM_CAN::DEVICE_CAN_ID:
-		status = receive_Device_main(frame);
-		break;
-	*/
+	case PUTM_CAN::APPS_MAIN_CAN_ID: 		status = receive_Apps_main(frame); 			break;
+	case PUTM_CAN::WHEELTEMP_MAIN_CAN_ID: 	status = receive_WheelTemp_main(frame); 	break;
+	//case PUTM_CAN::DEVICE_CAN_ID: 		status = receive_Device_main(frame); 		break;
 	}
 	return status;
 }
